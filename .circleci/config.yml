@@ -16,6 +16,9 @@ jobs:
           name: Build application Docker image
           command: |
             docker build -t app .
+
+      # Update the below parameters accoringly once the ECS cluster is deployed
+
       - deploy:
           name: Push application Docker image
           command: |
@@ -31,7 +34,6 @@ jobs:
               # Tag and push docker image
               docker tag app $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_IMAGE:$CIRCLE_SHA1
               docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_IMAGE:$CIRCLE_SHA1
-
 
 
               # Create task for docker deploy

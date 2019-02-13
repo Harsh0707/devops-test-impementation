@@ -10,7 +10,7 @@ AWS_REGION
 
 ```
 
-The applciation is deployed as a Dockerized web applicaiton on CirclCI, push to AWS EC2 container registry and deploy onto AWS ECS container cluster.
+The application is deployed as a Dockerized web application using CirclCI, push to AWS EC2 container registry and deploy onto AWS ECS container cluster.
 
 
 Infrastructure consists of ECS CLuster, VPC, ALB, ASG's etc. and is deployed using CFN templates.
@@ -20,7 +20,10 @@ NOTE: Parameters to deploy cfn templates can either be exported or passed in var
 
 
 
-CircleCI is configure as a CI pipleline which will automatically upload new docker image on ECR when a  code is deployed in github. The above pre-requisites needs to be configured in circleci for pipeline to be implemented.
+CircleCI is configured as a CI pipleline which will automatically upload new docker image on ECR when a  code is deployed in github. The above pre-requisites needs to be configured in circleci for pipeline to be implemented.
+
+Also, currently the ECS cluster is deployed in public subnets, for prod deployments private subnets are to be deployed.
+
 
 ------------------------------------------
 

@@ -1,5 +1,5 @@
 Description: 
-    This is an example of a long running ECS service that serves a JSON API of products.
+    ECS TaskDefinition to be deployed in devops-test-ecs cluster.
 Parameters: 
 
     VPC:
@@ -7,15 +7,15 @@ Parameters:
         Type: AWS::EC2::VPC::Id
 
     EnvironmentName:
-        Description: staging environment
+        Description: Environment to be deployed into
         Type: String
 
     Cluster:
-        Description: Please provide the ECS Cluster ID that this service should run on
+        Description: ECS Cluster Name
         Type: String
 
     DesiredCount: 
-        Description: How many instances of this task should we run across our cluster
+        Description: Instances the task should be run across our cluster
         Type: Number
 
     Listener:
@@ -26,7 +26,7 @@ Parameters:
     DockerImage:    
         Description: Repo, Image and Tag of the docker image to deploy.
         Type: String
-        Default: $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/devops-test-ecs:latest
+        Default: $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/devops-test-ecs:$CIRCLE_SHA1
 
 Resources:
 
