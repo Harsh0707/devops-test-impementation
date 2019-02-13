@@ -15,17 +15,18 @@ Parameters:
         Type: String
 
     DesiredCount: 
-        Description: How many instances of this task should we run across our cluster?
+        Description: How many instances of this task should we run across our cluster
         Type: Number
 
     Listener:
         Description: The Application Load Balancer listener to register with
         Type: String
 
+
     DockerImage:    
         Description: Repo, Image and Tag of the docker image to deploy.
         Type: String
-        Default: $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/devops-test:*
+        Default: $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/devops-test:latest
 
 Resources:
 
@@ -53,12 +54,6 @@ Resources:
                   Memory: 256
                   PortMappings:
                     - ContainerPort: 3000
-                  # LogConfiguration:       
-                  #   LogDriver: splunk
-                  #   Options:
-                  #       splunk-url: !Ref SplunkUrl
-                  #       splunk-token: !Ref SplunkToken
-
 
     TargetGroup:
         Type: AWS::ElasticLoadBalancingV2::TargetGroup

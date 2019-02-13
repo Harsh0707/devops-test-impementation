@@ -24,13 +24,13 @@ jobs:
               FAMILY='devops-test'
               DOCKER_IMAGE='devops-test'
               TASK='devops-test'
-              SERVICE='devops-ecs-task-Service-I3E8NX6330BD'
+              SERVICE='devops-ecs-task-Service-*'
               # Login to AWS
               aws configure set region $AWS_REGION
               $(aws ecr get-login)
               # Tag and push docker image
-              docker tag app $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_IMAGE:$CIRCLE_SHA1
-              docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_IMAGE:$CIRCLE_SHA1
+              docker tag app:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_IMAGE:latest
+              docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_IMAGE:latest
 
 
 

@@ -71,9 +71,6 @@ Outputs:
   TargetGroup:
     Value: !Ref TargetGroup
 
-  # ServiceUrl:
-  #   Description: URL of the load balancer for the sample service.
-  #   Value: !Sub http://${LoadBalancer.DNSName}
 
   SecurityGroup:
     Value: !Ref SecurityGroup
