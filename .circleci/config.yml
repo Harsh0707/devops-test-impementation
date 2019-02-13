@@ -16,31 +16,21 @@ jobs:
           name: Build application Docker image
           command: |
             docker build -t app .
-      # If we had
-      #- run:
-      #    name: Run mongo db
-      #    command: |
-      #      docker run --name mongo_test -d mongo
-      #- run:
-      #    name: Run tests
-      #    command: |
-      #      docker run -a STDOUT -it -p 4100:3000 --link mongo_test:db --name test_app app gulp test
-      #      #docker exec -t test_app gulp test
       - deploy:
           name: Push application Docker image
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              CLUSTER='test-app'
-              FAMILY='test-app'
-              DOCKER_IMAGE='test-app'
-              TASK='test-app'
-              SERVICE='app-service'
+              CLUSTER='devops-test'
+              FAMILY='devops-test'
+              DOCKER_IMAGE='devops-test'
+              TASK='devops-test'
+              SERVICE='devops-ecs-task-Service-I3E8NX6330BD'
               # Login to AWS
               aws configure set region $AWS_REGION
               $(aws ecr get-login)
               # Tag and push docker image
-              docker tag app 154279539675.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_IMAGE:$CIRCLE_SHA1
-              docker push 154279539675.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_IMAGE:$CIRCLE_SHA1
+              docker tag app $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_IMAGE:$CIRCLE_SHA1
+              docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_IMAGE:$CIRCLE_SHA1
 
 
 
