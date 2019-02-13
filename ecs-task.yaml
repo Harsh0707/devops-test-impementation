@@ -26,7 +26,7 @@ Parameters:
     DockerImage:    
         Description: Repo, Image and Tag of the docker image to deploy.
         Type: String
-        Default: $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/devops-test:latest
+        Default: $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/devops-test-ecs:latest
 
 Resources:
 
@@ -39,16 +39,16 @@ Resources:
             DesiredCount: !Ref DesiredCount
             TaskDefinition: !Ref TaskDefinition
             LoadBalancers: 
-                - ContainerName: "devops-test"
+                - ContainerName: "devops-test-ecs"
                   ContainerPort: 3000
                   TargetGroupArn: !Ref TargetGroup
 
     TaskDefinition:
         Type: AWS::ECS::TaskDefinition
         Properties:
-            Family: devops-test
+            Family: devops-test-ecs
             ContainerDefinitions:
-                - Name: devops-test
+                - Name: devops-test-ecs
                   Essential: true
                   Image: !Ref DockerImage
                   Memory: 256

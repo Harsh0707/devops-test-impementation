@@ -24,7 +24,7 @@ jobs:
               FAMILY='devops-test-ecs'
               DOCKER_IMAGE='devops-test-ecs'
               TASK='devops-test-ecs'
-              SERVICE='devops-test-task-Service-1MJ46AXGCGUEX'
+              SERVICE='devops-test-task-Service-10D4HT2OZ4IMC'
               # Login to AWS
               aws configure set region $AWS_REGION
               $(aws ecr get-login)
